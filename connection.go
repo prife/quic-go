@@ -414,7 +414,8 @@ var newClientConnection = func(
 		InitialSourceConnectionID: srcConnID,
 	}
 	if s.config.EnableDatagrams {
-		params.MaxDatagramFrameSize = protocol.MaxDatagramFrameSize
+		params.MaxDatagramFrameSize = 14000 //protocol.MaxDatagramFrameSize
+		// params.MaxDatagramFrameSize = protocol.InvalidByteCount
 	} else {
 		params.MaxDatagramFrameSize = protocol.InvalidByteCount
 	}
@@ -1522,12 +1523,12 @@ func (s *connection) handleAckFrame(frame *wire.AckFrame, encLevel protocol.Encr
 }
 
 func (s *connection) handleDatagramFrame(f *wire.DatagramFrame) error {
-	if f.Length(s.version) > protocol.MaxDatagramFrameSize {
-		return &qerr.TransportError{
-			ErrorCode:    qerr.ProtocolViolation,
-			ErrorMessage: "DATAGRAM frame too large",
-		}
-	}
+	// if f.Length(s.version) > protocol.MaxDatagramFrameSize {
+	// 	return &qerr.TransportError{
+	// 		ErrorCode:    qerr.ProtocolViolation,
+	// 		ErrorMessage: "DATAGRAM frame too large",
+	// 	}
+	// }
 	s.datagramQueue.HandleDatagramFrame(f)
 	return nil
 }
