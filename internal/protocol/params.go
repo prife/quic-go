@@ -12,7 +12,7 @@ const DesiredSendBufferSize = (1 << 20) * 2 // 2 MB
 const InitialPacketSizeIPv4 = 1252
 
 // InitialPacketSizeIPv6 is the maximum packet size that we use for sending IPv6 packets.
-const InitialPacketSizeIPv6 = 1232
+const InitialPacketSizeIPv6 = 1450
 
 // MaxCongestionWindowPackets is the maximum congestion window in packet.
 const MaxCongestionWindowPackets = 10000

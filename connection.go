@@ -414,8 +414,8 @@ var newClientConnection = func(
 		InitialSourceConnectionID: srcConnID,
 	}
 	if s.config.EnableDatagrams {
-		params.MaxDatagramFrameSize = 14000 //protocol.MaxDatagramFrameSize
-		// params.MaxDatagramFrameSize = protocol.InvalidByteCount
+		params.MaxDatagramFrameSize = protocol.MaxDatagramFrameSize
+		params.MaxDatagramFrameSize = 14000
 	} else {
 		params.MaxDatagramFrameSize = protocol.InvalidByteCount
 	}
